@@ -43,7 +43,7 @@ class Get
 
 	public static function image_tag($filename,$preset=NULL,$alt="",$fallback="")
 	{
-		$src = self::image($filename,$preset);
+		$src = static::image($filename,$preset);
 
 		if(!$src) return $fallback;
 
@@ -61,10 +61,10 @@ class Get
 
 		try
 		{
-			if(!preg_match('/\w+/i', $filename)) throw new \FileAccessException;
+			if(!preg_match('/\w+/i', $filename)) throw new \Exception;
 			return \File::get_url(static::$config['image_dir']. DS .$new_file,array(),'images');
 		}
-		catch(\FileAccessException $e)
+		catch(\Exception $e)
 		{
 			if(is_null($preset))
 			{
@@ -105,35 +105,20 @@ class Get
 				}
 
 			}
-			catch(\FileAccessException $e)
+			catch(\Exception $e)
 			{
 				return false;
 			}
-			catch(\OutOfBoundsException $e)
-			{
-				return false;
-			}
-			catch(\ErrorException $e)
-			{
-				return false;
-			}
-
-			try
+      
+      try
 			{
 				$get_file_url = \File::get_url(static::$config['image_dir']. DS .$new_file,array(),'images');
 			}
-			catch(\FileAccessException $e)
+			catch(\Exception $e)
 			{
 				return false;
 			}
-			catch(\OutOfBoundsException $e)
-			{
-				return false;
-			}
-			catch(\ErrorException $e)
-			{
-				return false;
-			}
+			
 
 			return $get_file_url;
 		}
