@@ -83,8 +83,10 @@ class Queue
 				$data_store->to_store($queue_res->get_row_body($q_row),$queue_res->get_row_type($q_row));
 			}
 
-			if($data_store->has_data()) $data_store->save();
+			if($data_store->has_data() && $data_store->save()) return true;
 		}
+
+		return false;
 	}
 
 	/**
