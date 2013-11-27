@@ -9,4 +9,5 @@ Autoloader::add_classes(array(
 	'Queue\\QueueConsumerInterface' => __DIR__ . '/classes/queue.php',
 	'Queue\\Handler\\Notify_Handler'=> __DIR__ . '/classes/handler/notify_handler.php',
 	'Queue\\Consumer\\Notify_Consumer'=> __DIR__ . '/classes/consumer/notify_consumer.php',
+	'Queue\\Util\\Queue_Container'=> __DIR__ . '/classes/util/queue_container.php',
 ));
